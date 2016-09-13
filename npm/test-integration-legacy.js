@@ -13,7 +13,7 @@ module.exports = function (exit) {
     console.log('Running integration tests using mocha on node...'.yellow.bold);
 
     var mocha = new Mocha({
-        timeout: 10000
+        timeout: 1000 * 60
     });
 
     fs.readdir(SPEC_SOURCE_DIR, function (err, files) {
