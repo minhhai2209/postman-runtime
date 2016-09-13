@@ -13,7 +13,7 @@ runtime = function (spec, done) {
         callbacks = {};
 
     // add a spy for each callback
-    _.each(_.keys(Runner.Run.triggers), function (eventName) {
+    _.forEach(_.keys(Runner.Run.triggers), function (eventName) {
         callbacks[eventName] = sinon.spy();
     });
 
@@ -27,13 +27,13 @@ runtime = function (spec, done) {
     });
 };
 
-before(function () {
+before(function () { // eslint-disable-line mocha/no-hooks-for-single-case
     global.sinon = sinon; // expose global for ease of use
     global.expect = expect; // expose global
     this.run = runtime;
 });
 
-after(function () {
+after(function () { // eslint-disable-line mocha/no-hooks-for-single-case
     delete global.sinon;
     delete global.expect;
 });
