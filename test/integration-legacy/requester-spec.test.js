@@ -11,29 +11,29 @@ describe('Requester', function () {
         it('should be able to avoid redirects', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": "tests['worked'] = responseCode.code === 302;"
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "http://httpbin.org/redirect/1",
-                                "method": "GET"
+                            'request': {
+                                'url': 'http://httpbin.org/redirect/1',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -121,7 +121,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -133,7 +133,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -146,7 +146,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -159,8 +159,11 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
+                            var result,
+                                scriptResult;
+
                             expect(err).to.be(null);
 
                             // Sanity
@@ -171,14 +174,14 @@ describe('Requester', function () {
                             // This collection has no pre-request scripts
                             expect(results.length).to.be(1);
 
-                            var result = results[0];
+                            result = results[0];
                             expect(result.error).to.be(undefined);
 
-                            var scriptResult = results[0];
+                            scriptResult = results[0];
                             expect(scriptResult.result.masked.scriptType).to.eql('test');
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -188,7 +191,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -215,29 +218,29 @@ describe('Requester', function () {
         it('should follow redirects by default', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": "tests['worked'] = responseCode.code === 302;"
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "http://httpbin.org/redirect/1",
-                                "method": "GET"
+                            'request': {
+                                'url': 'http://httpbin.org/redirect/1',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -326,7 +329,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -338,7 +341,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -351,7 +354,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -364,8 +367,11 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
+                            var result,
+                                scriptResult;
+
                             expect(err).to.be(null);
 
                             // Sanity
@@ -376,14 +382,14 @@ describe('Requester', function () {
                             // This collection has no pre-request scripts
                             expect(results.length).to.be(1);
 
-                            var result = results[0];
+                            result = results[0];
                             expect(result.error).to.be(undefined);
 
-                            var scriptResult = results[0];
+                            scriptResult = results[0];
                             expect(scriptResult.result.masked.scriptType).to.eql('test');
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -393,7 +399,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -423,22 +429,22 @@ describe('Requester', function () {
         it('should not send the request body if it is empty in the raw mode', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": ""
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'raw',
+                                    'raw': ''
                                 }
                             }
                         }
@@ -531,7 +537,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -543,7 +549,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -556,7 +562,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -569,7 +575,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -580,7 +586,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -590,7 +596,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -624,22 +630,22 @@ describe('Requester', function () {
         it('should not send the request body if it is empty in the urlencoded mode', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "urlencoded",
-                                    "urlencoded": []
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'urlencoded',
+                                    'urlencoded': []
                                 }
                             }
                         }
@@ -732,7 +738,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -744,7 +750,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -757,7 +763,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -770,7 +776,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -781,7 +787,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -791,7 +797,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -824,22 +830,22 @@ describe('Requester', function () {
         it('should not send the request body if it is empty in the formdata mode', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "formdata",
-                                    "formdata": []
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'formdata',
+                                    'formdata': []
                                 }
                             }
                         }
@@ -932,7 +938,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -944,7 +950,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -957,7 +963,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -970,7 +976,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -981,7 +987,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -991,7 +997,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1026,28 +1032,28 @@ describe('Requester', function () {
     it('should support multiple headers with the same name', function (mochaDone) {
         var runner = new runtime.Runner(),
             rawCollection = {
-                "variables": [],
-                "info": {
-                    "name": "TestCollection",
-                    "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                    "description": "",
-                    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                'variables': [],
+                'info': {
+                    'name': 'TestCollection',
+                    '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                    'description': '',
+                    'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                 },
-                "item": [
+                'item': [
                     {
-                        "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                        "name": "First Request",
-                        "request": {
-                            "url": "http://echo.getpostman.com/headers",
-                            "method": "GET",
-                            "header": [
+                        'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                        'name': 'First Request',
+                        'request': {
+                            'url': 'http://echo.getpostman.com/headers',
+                            'method': 'GET',
+                            'header': [
                                 {
-                                    "key": "xx",
-                                    "value": "yy"
+                                    'key': 'xx',
+                                    'value': 'yy'
                                 },
                                 {
-                                    "key": "xx",
-                                    "value": "zz"
+                                    'key': 'xx',
+                                    'value': 'zz'
                                 }
                             ]
                         }
@@ -1141,7 +1147,7 @@ describe('Requester', function () {
                         testables.itemsComplete[cursor.iteration].push(item);
                     });
                 },
-                beforePrerequest: function (err, cursor, events, item) {
+                beforePrerequest: function (err, cursor, events /* , item */) {
                     check(function () {
                         expect(err).to.be(null);
 
@@ -1153,7 +1159,7 @@ describe('Requester', function () {
                         expect(events.length).to.be(0);
                     });
                 },
-                prerequest: function (err, cursor, results, item) {
+                prerequest: function (err, cursor, results /* , item */) {
                     check(function () {
                         expect(err).to.be(null);
 
@@ -1229,30 +1235,30 @@ describe('Requester', function () {
     it('should upload multiple formdata parameters with the same name', function (mochaDone) {
         var runner = new runtime.Runner(),
             rawCollection = {
-                "variables": [],
-                "info": {
-                    "name": "TestCollection",
-                    "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                    "description": "",
-                    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                'variables': [],
+                'info': {
+                    'name': 'TestCollection',
+                    '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                    'description': '',
+                    'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                 },
-                "item": [
+                'item': [
                     {
-                        "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                        "name": "First Request",
-                        "request": {
-                            "url": "http://httpbin.org/post",
-                            "method": "POST",
-                            "body": {
-                                "mode": "formdata",
-                                "formdata": [
+                        'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                        'name': 'First Request',
+                        'request': {
+                            'url': 'http://httpbin.org/post',
+                            'method': 'POST',
+                            'body': {
+                                'mode': 'formdata',
+                                'formdata': [
                                     {
-                                        "key": "xx",
-                                        "value": "yy"
+                                        'key': 'xx',
+                                        'value': 'yy'
                                     },
                                     {
-                                        "key": "xx",
-                                        "value": "zz"
+                                        'key': 'xx',
+                                        'value': 'zz'
                                     }
                                 ]
                             }
@@ -1347,7 +1353,7 @@ describe('Requester', function () {
                         testables.itemsComplete[cursor.iteration].push(item);
                     });
                 },
-                beforePrerequest: function (err, cursor, events, item) {
+                beforePrerequest: function (err, cursor, events /* , item */) {
                     check(function () {
                         expect(err).to.be(null);
 
@@ -1359,7 +1365,7 @@ describe('Requester', function () {
                         expect(events.length).to.be(0);
                     });
                 },
-                prerequest: function (err, cursor, results, item) {
+                prerequest: function (err, cursor, results /* , item */) {
                     check(function () {
                         expect(err).to.be(null);
 
@@ -1437,30 +1443,30 @@ describe('Requester', function () {
             var runner = new runtime.Runner(),
                 fakeFileResolver = {
                     createReadStream: function () {
-                        return "fake-file-content"
+                        return 'fake-file-content';
                     }
                 },
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "formdata",
-                                    "formdata": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'formdata',
+                                    'formdata': [
                                         {
-                                            "key": "myfile",
-                                            "type": "file",
-                                            "src": "/some/path"
+                                            'key': 'myfile',
+                                            'type': 'file',
+                                            'src': '/some/path'
                                         }
                                     ]
                                 }
@@ -1552,7 +1558,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1564,7 +1570,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1577,7 +1583,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1590,7 +1596,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1601,7 +1607,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1611,7 +1617,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1629,7 +1635,7 @@ describe('Requester', function () {
                             expect(body.args).to.be.empty();
                             expect(body.data).to.be.empty();
                             expect(body.files).to.be.empty();
-                            expect(body.form).to.be.eql({ myfile: 'fake-file-content' });
+                            expect(body.form).to.be.eql({myfile: 'fake-file-content'});
                         });
                     },
                     done: function (err) {
@@ -1645,26 +1651,26 @@ describe('Requester', function () {
         it('should not upload a file if no file resolver is provided', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "formdata",
-                                    "formdata": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'formdata',
+                                    'formdata': [
                                         {
-                                            "key": "myfile",
-                                            "type": "file",
-                                            "src": "/some/path"
+                                            'key': 'myfile',
+                                            'type': 'file',
+                                            'src': '/some/path'
                                         }
                                     ]
                                 }
@@ -1766,7 +1772,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1778,7 +1784,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1791,7 +1797,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1804,7 +1810,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1815,7 +1821,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1825,7 +1831,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1859,31 +1865,31 @@ describe('Requester', function () {
         it('should upload multiple files multiple if files are provided', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "formdata",
-                                    "formdata": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'formdata',
+                                    'formdata': [
                                         {
-                                            "key": "files",
-                                            "type": "file",
-                                            "src": require('path').join(__dirname, 'data', 'one.txt')
+                                            'key': 'files',
+                                            'type': 'file',
+                                            'src': require('path').join(__dirname, 'data', 'one.txt')
                                         },
                                         {
-                                            "key": "files",
-                                            "type": "file",
-                                            "src": require('path').join(__dirname, 'data', 'two.txt')
+                                            'key': 'files',
+                                            'type': 'file',
+                                            'src': require('path').join(__dirname, 'data', 'two.txt')
                                         }
                                     ]
                                 }
@@ -1913,7 +1919,7 @@ describe('Requester', function () {
             runner.run(collection, {
                 iterationCount: 1,
                 requester: {
-                    followRedirects: false,
+                    followRedirects: false
                 },
                 fileResolver: require('fs')
             }, function (err, run) {
@@ -1980,7 +1986,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -1992,7 +1998,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2005,7 +2011,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2018,7 +2024,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2029,7 +2035,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2039,7 +2045,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2074,30 +2080,30 @@ describe('Requester', function () {
         it('should upload a mixture of file and string formdata parameters', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://echo.getpostman.com/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "formdata",
-                                    "formdata": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://echo.getpostman.com/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'formdata',
+                                    'formdata': [
                                         {
-                                            "key": "files",
-                                            "type": "file",
-                                            "src": require('path').join(__dirname, 'data', 'one.txt')
+                                            'key': 'files',
+                                            'type': 'file',
+                                            'src': require('path').join(__dirname, 'data', 'one.txt')
                                         },
                                         {
-                                            "key": "myParam",
-                                            "value": "myValue"
+                                            'key': 'myParam',
+                                            'value': 'myValue'
                                         }
                                     ]
                                 }
@@ -2127,7 +2133,7 @@ describe('Requester', function () {
             runner.run(collection, {
                 iterationCount: 1,
                 requester: {
-                    followRedirects: false,
+                    followRedirects: false
                 },
                 fileResolver: require('fs')
             }, function (err, run) {
@@ -2194,7 +2200,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events  /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2206,7 +2212,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2219,7 +2225,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2232,7 +2238,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2243,7 +2249,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2253,7 +2259,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2288,23 +2294,23 @@ describe('Requester', function () {
             var runner = new runtime.Runner(),
                 path = require('path'),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://httpbin.org/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "file",
-                                    "file": {
-                                        "src": path.join(__dirname, 'data', 'binary-file.png')
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://httpbin.org/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'file',
+                                    'file': {
+                                        'src': path.join(__dirname, 'data', 'binary-file.png')
                                     }
                                 }
                             }
@@ -2400,7 +2406,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2412,7 +2418,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2425,7 +2431,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2438,7 +2444,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2449,7 +2455,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2459,7 +2465,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2489,24 +2495,23 @@ describe('Requester', function () {
         });
         it('should not upload a binary data file if path is absent', function (mochaDone) {
             var runner = new runtime.Runner(),
-                path = require('path'),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://httpbin.org/post",
-                                "method": "POST",
-                                "body": {
-                                    "mode": "file",
-                                    "file": {}
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://httpbin.org/post',
+                                'method': 'POST',
+                                'body': {
+                                    'mode': 'file',
+                                    'file': {}
                                 }
                             }
                         }
@@ -2602,7 +2607,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2614,7 +2619,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2627,7 +2632,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2640,7 +2645,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2651,7 +2656,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2661,7 +2666,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2697,35 +2702,35 @@ describe('Requester', function () {
         it('should be resolved before sending the request', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "EmptyRawBody",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'EmptyRawBody',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": {
-                                    "raw": "httpbin.org/status/:code",
-                                    "host": [
-                                        "httpbin",
-                                        "org"
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': {
+                                    'raw': 'httpbin.org/status/:code',
+                                    'host': [
+                                        'httpbin',
+                                        'org'
                                     ],
-                                    "path": [
-                                        "status",
-                                        ":code"
+                                    'path': [
+                                        'status',
+                                        ':code'
                                     ],
-                                    "variable": [
+                                    'variable': [
                                         {
-                                            "id": "code",
-                                            "value": "201"
+                                            'id': 'code',
+                                            'value': '201'
                                         }
                                     ]
                                 },
-                                "method": "GET"
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -2817,7 +2822,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events/* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2829,7 +2834,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results/* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2842,7 +2847,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events/* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2855,7 +2860,7 @@ describe('Requester', function () {
                             expect(events).to.be.empty();
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results/* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2866,7 +2871,7 @@ describe('Requester', function () {
                             expect(results).to.be.empty();
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2876,7 +2881,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request/* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -2919,10 +2924,11 @@ describe('Requester', function () {
 
             server.on('request', function (req, res) {
                 if (req.client.authorized) {
-                    res.writeHead(200, { 'Content-Type': 'text/plain' });
+                    res.writeHead(200, {'Content-Type': 'text/plain'});
                     res.end('authorized\n');
-                } else {
-                    res.writeHead(401, { 'Content-Type': 'text/plain' });
+                }
+                else {
+                    res.writeHead(401, {'Content-Type': 'text/plain'});
                     res.end('unauthorized\n');
                 }
             });
@@ -2938,29 +2944,29 @@ describe('Requester', function () {
         it('should send the client certificate when asked', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": "tests['worked'] = responseCode.code === 302;"
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "https://localhost:" + port + '/',
-                                "method": "GET"
+                            'request': {
+                                'url': 'https://localhost:' + port + '/',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -2995,7 +3001,7 @@ describe('Requester', function () {
                             keyPath: clientKeyPath,
                             pemPath: clientCertPath
                         });
-                    }
+                    };
                 };
 
             runner.run(collection, {
@@ -3064,7 +3070,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3076,7 +3082,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3089,7 +3095,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3102,7 +3108,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor /* , results, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3112,7 +3118,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3122,7 +3128,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3154,29 +3160,29 @@ describe('Requester', function () {
         it('should not send the client certificate if certificate manager is not provided', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": "tests['worked'] = responseCode.code === 302;"
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "https://localhost:" + port + '/',
-                                "method": "GET"
+                            'request': {
+                                'url': 'https://localhost:' + port + '/',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -3265,7 +3271,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3277,7 +3283,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3290,7 +3296,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3303,7 +3309,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor /* , results, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3313,7 +3319,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3323,7 +3329,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3354,32 +3360,32 @@ describe('Requester', function () {
         it('should be available in the sandbox', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": [
-                                            "tests['Cookie A'] = postman.getResponseCookie('a') && postman.getResponseCookie('a').value === 'one';",
-                                            "tests['Cookie b'] = postman.getResponseCookie('b') && postman.getResponseCookie('b').value === 'two';",
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': [
+                                            'tests[\'Cookie A\'] = postman.getResponseCookie(\'a\') && postman.getResponseCookie(\'a\').value === \'one\';',
+                                            'tests[\'Cookie b\'] = postman.getResponseCookie(\'b\') && postman.getResponseCookie(\'b\').value === \'two\';'
                                         ]
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "http://httpbin.org/cookies/set?A=one&b=two",
-                                "method": "GET"
+                            'request': {
+                                'url': 'http://httpbin.org/cookies/set?A=one&b=two',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -3468,7 +3474,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3480,7 +3486,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3493,7 +3499,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3506,7 +3512,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3524,12 +3530,12 @@ describe('Requester', function () {
 
                             expect(scriptResult.result.globals.tests).to.be.ok();
 
-                            _.forOwn(scriptResult.result.globals.tests, function (result, test) {
+                            _.forOwn(scriptResult.result.globals.tests, function (result /* , test */) {
                                 expect(result).to.be.ok();
                             });
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3539,7 +3545,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3569,29 +3575,29 @@ describe('Requester', function () {
         it('should return all sent headers', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "event": [
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'event': [
                                 {
-                                    "listen": "test",
-                                    "script": {
-                                        "type": "text/javascript",
-                                        "exec": "tests['worked'] = responseCode.code === 302;"
+                                    'listen': 'test',
+                                    'script': {
+                                        'type': 'text/javascript',
+                                        'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                     }
                                 }
                             ],
-                            "request": {
-                                "url": "http://httpbin.org/cookies",
-                                "method": "GET"
+                            'request': {
+                                'url': 'http://httpbin.org/cookies',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -3683,7 +3689,7 @@ describe('Requester', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3695,7 +3701,7 @@ describe('Requester', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3708,7 +3714,7 @@ describe('Requester', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3721,8 +3727,11 @@ describe('Requester', function () {
                             expect(events.length).to.be(1);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor, results /* , item */) {
                         check(function () {
+                            var result,
+                                scriptResult;
+
                             expect(err).to.be(null);
 
                             // Sanity
@@ -3733,14 +3742,14 @@ describe('Requester', function () {
                             // This collection has no pre-request scripts
                             expect(results.length).to.be(1);
 
-                            var result = results[0];
+                            result = results[0];
                             expect(result.error).to.be(undefined);
 
-                            var scriptResult = results[0];
+                            scriptResult = results[0];
                             expect(scriptResult.result.masked.scriptType).to.eql('test');
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3750,7 +3759,7 @@ describe('Requester', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -3790,7 +3799,7 @@ describe('Requester', function () {
                 path = require('path'),
                 server;
 
-            before('Start HTTPS server', function (done) {
+            before('Start HTTPS server', function (done) { // eslint-disable-line mocha/no-hooks-for-single-case
                 var https = require('https');
 
                 server = https.createServer({
@@ -3815,7 +3824,7 @@ describe('Requester', function () {
                 server.listen(0, 'localhost');
             });
 
-            after('Stop HTTPS server', function (done) {
+            after('Stop HTTPS server', function (done) {  // eslint-disable-line mocha/no-hooks-for-single-case
                 server.close();
                 done();
             });
@@ -3823,20 +3832,20 @@ describe('Requester', function () {
             it('should handle raw deflate responses', function (mochaDone) {
                 var runner = new runtime.Runner(),
                     rawCollection = {
-                        "variables": [],
-                        "info": {
-                            "name": "Raw deflate",
-                            "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                            "description": "",
-                            "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                        'variables': [],
+                        'info': {
+                            'name': 'Raw deflate',
+                            '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                            'description': '',
+                            'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                         },
-                        "item": [
+                        'item': [
                             {
-                                "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                                "name": "First Request",
-                                "request": {
-                                    "url": "https://localhost:" + port + '/',
-                                    "method": "GET"
+                                'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                                'name': 'First Request',
+                                'request': {
+                                    'url': 'https://localhost:' + port + '/',
+                                    'method': 'GET'
                                 }
                             }
                         ]
@@ -3929,7 +3938,7 @@ describe('Requester', function () {
                                 testables.itemsComplete[cursor.iteration].push(item);
                             });
                         },
-                        beforePrerequest: function (err, cursor, events, item) {
+                        beforePrerequest: function (err, cursor, events /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -3941,7 +3950,7 @@ describe('Requester', function () {
                                 expect(events.length).to.be(0);
                             });
                         },
-                        prerequest: function (err, cursor, results, item) {
+                        prerequest: function (err, cursor, results /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -3954,7 +3963,7 @@ describe('Requester', function () {
                                 expect(results.length).to.be(0);
                             });
                         },
-                        beforeTest: function (err, cursor, events, item) {
+                        beforeTest: function (err, cursor /* , events, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -3964,7 +3973,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        test: function (err, cursor, results, item) {
+                        test: function (err, cursor /* , results, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -3974,7 +3983,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        beforeRequest: function (err, cursor, request, item) {
+                        beforeRequest: function (err, cursor /* , request, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -3984,7 +3993,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        request: function (err, cursor, response, request, item) {
+                        request: function (err, cursor, response, request /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4017,7 +4026,7 @@ describe('Requester', function () {
                 fs = require('fs'),
                 path = require('path');
 
-            before('Start HTTPS server', function (done) {
+            before('Start HTTPS server', function (done) { // eslint-disable-line mocha/no-hooks-for-single-case
                 var https = require('https');
 
                 server = https.createServer({
@@ -4042,7 +4051,7 @@ describe('Requester', function () {
                 server.listen(0, 'localhost');
             });
 
-            after('Stop HTTPS server', function (done) {
+            after('Stop HTTPS server', function (done) { // eslint-disable-line mocha/no-hooks-for-single-case
                 server.close(); // todo: wait for the server connections to drain
                 done();
             });
@@ -4050,20 +4059,20 @@ describe('Requester', function () {
             it('should handle deflate responses', function (mochaDone) {
                 var runner = new runtime.Runner(),
                     rawCollection = {
-                        "variables": [],
-                        "info": {
-                            "name": "Deflate",
-                            "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                            "description": "",
-                            "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                        'variables': [],
+                        'info': {
+                            'name': 'Deflate',
+                            '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                            'description': '',
+                            'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                         },
-                        "item": [
+                        'item': [
                             {
-                                "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                                "name": "First Request",
-                                "request": {
-                                    "url": "https://localhost:" + port + '/',
-                                    "method": "GET"
+                                'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                                'name': 'First Request',
+                                'request': {
+                                    'url': 'https://localhost:' + port + '/',
+                                    'method': 'GET'
                                 }
                             }
                         ]
@@ -4152,7 +4161,7 @@ describe('Requester', function () {
                                 testables.itemsComplete[cursor.iteration].push(item);
                             });
                         },
-                        beforePrerequest: function (err, cursor, events, item) {
+                        beforePrerequest: function (err, cursor, events /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4164,7 +4173,7 @@ describe('Requester', function () {
                                 expect(events.length).to.be(0);
                             });
                         },
-                        prerequest: function (err, cursor, results, item) {
+                        prerequest: function (err, cursor, results  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4177,7 +4186,7 @@ describe('Requester', function () {
                                 expect(results.length).to.be(0);
                             });
                         },
-                        beforeTest: function (err, cursor, events, item) {
+                        beforeTest: function (err, cursor /* , events, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4187,7 +4196,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        test: function (err, cursor, results, item) {
+                        test: function (err, cursor /* , results, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4197,7 +4206,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        beforeRequest: function (err, cursor, request, item) {
+                        beforeRequest: function (err, cursor /* , request, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4207,7 +4216,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        request: function (err, cursor, response, request, item) {
+                        request: function (err, cursor, response, request  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4273,29 +4282,29 @@ describe('Requester', function () {
             it('should handle gzip responses', function (mochaDone) {
                 var runner = new runtime.Runner(),
                     rawCollection = {
-                        "variables": [],
-                        "info": {
-                            "name": "NewmanSetNextRequest",
-                            "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                            "description": "",
-                            "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                        'variables': [],
+                        'info': {
+                            'name': 'NewmanSetNextRequest',
+                            '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                            'description': '',
+                            'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                         },
-                        "item": [
+                        'item': [
                             {
-                                "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                                "name": "First Request",
-                                "event": [
+                                'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                                'name': 'First Request',
+                                'event': [
                                     {
-                                        "listen": "test",
-                                        "script": {
-                                            "type": "text/javascript",
-                                            "exec": "tests['worked'] = responseCode.code === 302;"
+                                        'listen': 'test',
+                                        'script': {
+                                            'type': 'text/javascript',
+                                            'exec': 'tests[\'worked\'] = responseCode.code === 302;'
                                         }
                                     }
                                 ],
-                                "request": {
-                                    "url": "https://localhost:" + port + '/',
-                                    "method": "GET"
+                                'request': {
+                                    'url': 'https://localhost:' + port + '/',
+                                    'method': 'GET'
                                 }
                             }
                         ]
@@ -4388,7 +4397,7 @@ describe('Requester', function () {
                                 testables.itemsComplete[cursor.iteration].push(item);
                             });
                         },
-                        beforePrerequest: function (err, cursor, events, item) {
+                        beforePrerequest: function (err, cursor, events  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4400,7 +4409,7 @@ describe('Requester', function () {
                                 expect(events.length).to.be(0);
                             });
                         },
-                        prerequest: function (err, cursor, results, item) {
+                        prerequest: function (err, cursor, results  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4413,7 +4422,7 @@ describe('Requester', function () {
                                 expect(results.length).to.be(0);
                             });
                         },
-                        beforeTest: function (err, cursor, events, item) {
+                        beforeTest: function (err, cursor, events  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4426,7 +4435,7 @@ describe('Requester', function () {
                                 expect(events.length).to.be(1);
                             });
                         },
-                        test: function (err, cursor, results, item) {
+                        test: function (err, cursor /* , results, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4436,7 +4445,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        beforeRequest: function (err, cursor, request, item) {
+                        beforeRequest: function (err, cursor /* , request, item */) {
                             check(function () {
                                 expect(err).to.be(null);
 
@@ -4446,7 +4455,7 @@ describe('Requester', function () {
                                 expect(cursor.ref).to.eql(runStore.ref);
                             });
                         },
-                        request: function (err, cursor, response, request, item) {
+                        request: function (err, cursor, response, request  /* , item */) {
                             check(function () {
                                 expect(err).to.be(null);
 

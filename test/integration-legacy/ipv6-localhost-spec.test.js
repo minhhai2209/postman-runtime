@@ -1,21 +1,21 @@
-var _ = require('lodash'),
+var /* _ = require('lodash'), */
     expect = require('expect.js'),
     runtime = require('../../index'),
     sdk = require('postman-collection');
 
-/* global describe, it, beforeEach, afterEach */
+/* global describe, it, beforeEach */
 describe('Localhost requests', function () {
     describe('IPv6 server', function () {
         var server,
             port;
 
-        beforeEach('Start IPv6 server', function (done) {
+        beforeEach('Start IPv6 server', function (done) { // eslint-disable-line mocha/no-hooks-for-single-case
             var http = require('http');
 
             server = http.createServer();
 
             server.on('request', function (req, res) {
-                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.writeHead(200, {'Content-Type': 'text/plain'});
                 res.end('Hello World\n');
             });
 
@@ -30,20 +30,20 @@ describe('Localhost requests', function () {
         it('should be able to connect', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://localhost:" + port + '/',
-                                "method": "GET"
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://localhost:' + port + '/',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -131,7 +131,7 @@ describe('Localhost requests', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -143,7 +143,7 @@ describe('Localhost requests', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -156,7 +156,7 @@ describe('Localhost requests', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor /* , events, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -166,7 +166,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor /* , results, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -176,7 +176,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -186,7 +186,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -217,13 +217,13 @@ describe('Localhost requests', function () {
         var server,
             port;
 
-        beforeEach('Start IPv4 server', function (done) {
+        beforeEach('Start IPv4 server', function (done) { // eslint-disable-line mocha/no-hooks-for-single-case
             var http = require('http');
 
             server = http.createServer();
 
             server.on('request', function (req, res) {
-                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.writeHead(200, {'Content-Type': 'text/plain'});
                 res.end('Hello World\n');
             });
 
@@ -238,20 +238,20 @@ describe('Localhost requests', function () {
         it('should be able to connect', function (mochaDone) {
             var runner = new runtime.Runner(),
                 rawCollection = {
-                    "variables": [],
-                    "info": {
-                        "name": "NewmanSetNextRequest",
-                        "_postman_id": "d6f7bb29-2258-4e1b-9576-b2315cf5b77e",
-                        "description": "",
-                        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+                    'variables': [],
+                    'info': {
+                        'name': 'NewmanSetNextRequest',
+                        '_postman_id': 'd6f7bb29-2258-4e1b-9576-b2315cf5b77e',
+                        'description': '',
+                        'schema': 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
                     },
-                    "item": [
+                    'item': [
                         {
-                            "id": "bf0a6006-c987-253a-525d-9f6be7071210",
-                            "name": "First Request",
-                            "request": {
-                                "url": "http://localhost:" + port + '/',
-                                "method": "GET"
+                            'id': 'bf0a6006-c987-253a-525d-9f6be7071210',
+                            'name': 'First Request',
+                            'request': {
+                                'url': 'http://localhost:' + port + '/',
+                                'method': 'GET'
                             }
                         }
                     ]
@@ -339,7 +339,7 @@ describe('Localhost requests', function () {
                             testables.itemsComplete[cursor.iteration].push(item);
                         });
                     },
-                    beforePrerequest: function (err, cursor, events, item) {
+                    beforePrerequest: function (err, cursor, events /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -351,7 +351,7 @@ describe('Localhost requests', function () {
                             expect(events.length).to.be(0);
                         });
                     },
-                    prerequest: function (err, cursor, results, item) {
+                    prerequest: function (err, cursor, results /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -364,7 +364,7 @@ describe('Localhost requests', function () {
                             expect(results.length).to.be(0);
                         });
                     },
-                    beforeTest: function (err, cursor, events, item) {
+                    beforeTest: function (err, cursor /* , events, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -374,7 +374,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    test: function (err, cursor, results, item) {
+                    test: function (err, cursor /* , results, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -384,7 +384,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    beforeRequest: function (err, cursor, request, item) {
+                    beforeRequest: function (err, cursor /* , request, item */) {
                         check(function () {
                             expect(err).to.be(null);
 
@@ -394,7 +394,7 @@ describe('Localhost requests', function () {
                             expect(cursor.ref).to.eql(runStore.ref);
                         });
                     },
-                    request: function (err, cursor, response, request, item) {
+                    request: function (err, cursor, response, request /* , item */) {
                         check(function () {
                             expect(err).to.be(null);
 
