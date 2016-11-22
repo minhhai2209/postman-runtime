@@ -39,3 +39,5 @@ Thumbs.db
 
 # - Prevent unit test coverage reports from being committed to the repository
 .coverage
+
+postman-runtime.iml
